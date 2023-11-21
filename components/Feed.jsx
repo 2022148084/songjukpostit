@@ -30,7 +30,7 @@ const Feed = () => {
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt");
     const data = await response.json();
-    alert('Fetched!!')
+    alert(data)
 
     setAllPosts(data);
   };
