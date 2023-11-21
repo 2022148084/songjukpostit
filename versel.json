@@ -1,0 +1,14 @@
+{
+    "headers": [
+      {
+        "source": "/about.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-store"
+          }
+        ]
+      }
+    ]
+  }
+  
