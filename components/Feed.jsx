@@ -30,12 +30,22 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt", {next: {revalidate: 10}});
+      const response = await fetch("/api/prompt", {
+        method: 'GET',
+        headers: {
+          'Pragma': 'no-cache',
+          'Cache-Control': 'no-cache'
+        },
+        cache: 'no-store'
+      });
       const data = await response.json();
   
       setAllPosts(data);
     };
+  
+    fetchPosts();
   }, []);
+  
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
