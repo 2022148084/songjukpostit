@@ -29,12 +29,7 @@ const Feed = () => {
   
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt", {
-      method: 'GET', // 요청 방식 지정
-      headers: {
-        'Pragma': 'no-cache',
-        'Cache-Control': 'no-cache'
-      },
-      cache: 'no-store' // 캐시 사용하지 않음
+      cache: 'no-cache' // 캐시 사용 안 함
     });
     const data = await response.json();
     setAllPosts(data);
