@@ -9,8 +9,10 @@ export const GET = async (request, response) => {
        
 
         return new Response(JSON.stringify(prompts), { status: 200, 
-        headers:{'X-Vercel-Cache': 'MISS'} })
+         })
     } catch (error) {
         return new Response("Failed to fetch all prompts", { status: 500 })
     }
 } 
+
+export const dynamic = "force-dynamic";
