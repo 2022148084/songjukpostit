@@ -35,6 +35,12 @@ const Feed = () => {
 
   useEffect(() => {
     fetchPosts();
+
+    const interval = setInterval(() => {
+      fetchPosts();
+    }, 5000); // 5초마다 데이터를 다시 불러옵니다.
+
+    return () => clearInterval(interval); // 컴포넌트가 언마운트될 때 인터벌을 정리합니다.
   }, []);
 
   const filterPrompts = (searchtext) => {
