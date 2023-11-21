@@ -28,20 +28,23 @@ const Feed = () => {
 
   
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
+    const response = await fetch("/api/prompt", {
+      method: 'GET', // 요청 방식 지정
+      headers: {
+        'Pragma': 'no-cache',
+        'Cache-Control': 'no-cache'
+      },
+      cache: 'no-store' // 캐시 사용하지 않음
+    });
     const data = await response.json();
-    alert(data)
-
     setAllPosts(data);
   };
+  
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
-  const handleRefresh = () => {
-    fetchPosts();
-  };
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
