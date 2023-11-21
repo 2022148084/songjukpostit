@@ -35,11 +35,7 @@ const Feed = () => {
 
   useEffect(() => {
     fetchPosts();
-  },[]);
-
-  const handleRefresh = () => {
-    fetchPosts(); // 사용자가 새로고침 버튼을 클릭할 때 호출됩니다.
-  };
+  }, []);
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
