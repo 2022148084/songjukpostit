@@ -12,3 +12,8 @@ export const GET = async (request) => {
         return new Response("Failed to fetch all prompts", { status: 500 })
     }
 } 
+
+export default function handler(req, res) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.status(200).json({ data: "Your response data" });
+}
