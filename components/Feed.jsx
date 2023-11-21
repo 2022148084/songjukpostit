@@ -27,25 +27,21 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
   
+  const fetchPosts = async () => {
+    const response = await fetch("/api/prompt");
+    const data = await response.json();
+    alert('Fetched!!')
+
+    setAllPosts(data);
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch("/api/prompt", {
-        method: 'GET',
-        headers: {
-          'Pragma': 'no-cache',
-          'Cache-Control': 'no-cache'
-        },
-        cache: 'no-store'
-      });
-      const data = await response.json();
-  
-      setAllPosts(data);
-    };
-  
     fetchPosts();
   }, []);
-  
+
+  const handleRefresh = () => {
+    fetchPosts();
+  };
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
