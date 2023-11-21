@@ -9,7 +9,7 @@ export const GET = async (request, response) => {
        
 
         return new Response(JSON.stringify(prompts), { status: 200, 
-        headers:{'Cache-Control': 'max-age=0'} })
+        headers:{'X-Vercel-Cache': 'MISS'} })
     } catch (error) {
         return new Response("Failed to fetch all prompts", { status: 500 })
     }

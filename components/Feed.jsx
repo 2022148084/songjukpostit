@@ -28,7 +28,7 @@ const Feed = () => {
 
   
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt", {
+    const response = await fetch("/api/prompt/bunker", {
       method: 'GET', // HTTP 메소드 명시 (생략 가능, 기본값은 'GET')
       headers: {
         'Pragma': 'no-cache', // 캐시를 비활성화하기 위한 레거시 HTTP 헤더
