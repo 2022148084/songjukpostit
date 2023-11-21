@@ -1,19 +1,16 @@
 import Prompt from "@models/prompt";
 import { connectToDB } from "@utils/database";
 
-export const GET = async (request) => {
+export const GET = async (request, response) => {
     try {
         await connectToDB()
 
         const prompts = await Prompt.find({}).populate('creator')
+       
 
-        return new Response(JSON.stringify(prompts), { status: 200 })
+        return new Response(JSON.stringify(prompts), { status: 200, 
+        headers:{'Cache-Control': 'max-age=0'} })
     } catch (error) {
         return new Response("Failed to fetch all prompts", { status: 500 })
     }
 } 
-
-export default function handler(req, res) {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.status(200).json({ data: "Your response data" });
-}
