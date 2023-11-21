@@ -29,17 +29,17 @@ const Feed = () => {
   
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt", {
-      cache: 'no-cache' // 캐시 사용 안 함
+      method: 'GET', // HTTP 메소드 명시 (생략 가능, 기본값은 'GET')
+      headers: {
+        'Pragma': 'no-cache', // 캐시를 비활성화하기 위한 레거시 HTTP 헤더
+        'Cache-Control': 'no-cache, no-store, must-revalidate' // 캐시 제어를 위한 헤더
+      },
+      cache: 'no-store' // 요청에 대한 캐시를 전혀 저장하지 않음
     });
     const data = await response.json();
     setAllPosts(data);
   };
   
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
